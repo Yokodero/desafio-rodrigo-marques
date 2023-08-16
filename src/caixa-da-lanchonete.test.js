@@ -9,8 +9,8 @@ describe('CaixaDaLanchonete', () => {
         expect(resultado.replace("\xa0", " ")).toEqual(resultadoEsperado);
     };
 
-    test.each([
-        ['com carrinho vazio', 'dinheiro', 'Não há itens no carrinho de compra!', []],
+    test.each([ //okay
+        ['com carrinho vazio', 'dinheiro', 'Não há itens no carrinho de compra!', []], 
         ['com carrinho vazio', 'credito', 'Não há itens no carrinho de compra!', []],
         ['com carrinho vazio', 'debito', 'Não há itens no carrinho de compra!', []],
     ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
@@ -33,7 +33,7 @@ describe('CaixaDaLanchonete', () => {
         ['debito', 'R$ 35,50', ['cafe,4', 'sanduiche,3', 'queijo,2']],
     ])('compra de múltiplas quantidades em %p deve resultar em %p', validaTeste);
 
-    test.each([
+    test.each([ //okay
         ['com quantidade zero', 'dinheiro', 'Quantidade inválida!', ['cafe,0']],
         ['com um valor', 'credito', 'Item inválido!', ['1']],
         ['com código inexistente', 'debito', 'Item inválido!', ['pizza, 1']],
@@ -41,7 +41,7 @@ describe('CaixaDaLanchonete', () => {
     ])('compra %p em %p deve resultar em %p', (_, formaDePagamento, resultadoEsperado, itens) =>
         validaTeste(formaDePagamento, resultadoEsperado, itens));
 
-    test.each([
+    test.each([ //okay
         ['chantily', 'dinheiro', 'Item extra não pode ser pedido sem o principal', ['chantily,1']],
         ['queijo', 'credito', 'Item extra não pode ser pedido sem o principal', ['queijo,1']],
         ['chantily com outro item', 'credito', 'Item extra não pode ser pedido sem o principal', ['chantily,1', 'sanduiche,1']],
